@@ -87,6 +87,16 @@ body,
   height: 100px;
   margin: 0;
 }
+#leaflet button{
+  min-width: 80px;
+  padding: 10px 15px;
+  margin: 10px;
+  border-radius: 10px;
+  background-color: rgb(45, 207, 99);
+  color:honeydew;
+  font-weight: bold;
+  border: solid 2px rgba(192, 186, 209, 0.342);
+}
 #jaune {
   background-color: red;
 }
@@ -99,6 +109,7 @@ body,
   flex-direction: row;
   justify-content: center;
   margin-top: 10%;
+  margin-bottom: 10%;
 }
 .leaflet-container{
   -moz-box-shadow: 1px 1px 20px 5px #ccc;
