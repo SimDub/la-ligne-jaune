@@ -7,16 +7,15 @@
       <div id="app"></div>
       <router-view />
     </div>
-    <HereMap
-      appId="isowPSLYsaONp0u6FBUW"
-      appCode="Bhe5dQ-D4Nd1usIC5XOUJ2yKETeImpLsKzn5mSdXvlU"
-      lat="47.2135655"
-      lng="-1.5496263"
-      width="70%"
-      height="835px"
-      toilettelat="47.2673084419"
-      toilettelon="-1.4408557121799999"
-    />
+      <HereMap v-bind:theme=theme appId="T0ZRvqFl3EPBagnQo8t9" appCode="oCnrou0zSa-FFEiqcRA7lnWjc-MlLwWJDAh747oAemk" />
+      <br />
+      <button v-on:click="switchTheme('normal.day')">Normal - Day</button>
+      <button v-on:click="switchTheme('normal.day.grey')">Normal - Day (Grey)</button>
+      <button v-on:click="switchTheme('normal.day.transit')">Normal - Day (Transit)</button>
+      <button v-on:click="switchTheme('normal.night')">Normal - Night</button>
+      <button v-on:click="switchTheme('normal.night.grey')">Normal - Night (Grey)</button>
+      <button v-on:click="switchTheme('reduced.night')">Reduced - Night</button>
+      <button v-on:click="switchTheme('reduced.day')">Reduced - Day</button>
   </div>
 </template>
 
@@ -25,21 +24,26 @@ import Test from './components/Test'
 import HereMap from './components/HereMap.vue'
 /* eslint-disable */
 export default {
-  name: "App",
+  name: "app",
+  data() {
+    return {
+      theme: 'normal.day'
+    };
+  },
   components: {
     HereMap,
     Test
-  }
+  },
+  methods: {
+    switchTheme(theme) {
+      this.theme = theme;
+    }
+  },
 };
 </script>
 
 <style>
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+    body {
+        background-color: #F0F0F0;
+    }
 </style>
