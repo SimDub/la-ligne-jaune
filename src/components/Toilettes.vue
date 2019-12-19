@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import Vue from 'vue'
+// import Vue from 'vue'
 import Leaflet from './Leaflet'
 const axios = require('axios')
 /* eslint-disable */

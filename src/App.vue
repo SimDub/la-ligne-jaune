@@ -12,8 +12,8 @@
 </template>
 
 <script>
-import Test from './components/Test'
-import HereMap from './components/HereMap.vue'
+// import Test from './components/Test'
+// import HereMap from './components/HereMap.vue'
 
 /* eslint-disable */
 export default {
