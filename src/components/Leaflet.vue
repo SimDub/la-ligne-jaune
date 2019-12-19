@@ -5,7 +5,7 @@
     <LMap :zoom="zoom" :center="[latPosition,lonPosition]" style="height: 300px; width: 500px">
       <LTileLayer :url="url" ></LTileLayer>
       <!-- <LMarker :lat-lng="marker" ></LMarker>  -->
-      <LMarker v-if="visible" v-for="item in wc" :lat-lng="item" ></LMarker>
+      <LMarker v-if="visible" v-for="item in wc" :lat-lng="item" v-bind:key="item.id" ></LMarker>
       <LMarker :lat-lng="[latPosition,lonPosition]" id="jaune"></LMarker>
 
     </LMap>
