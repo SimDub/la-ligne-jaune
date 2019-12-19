@@ -22,7 +22,6 @@ export default new Router({
       path: '/heremap',
       name: 'heremap',
       component: HereMap
-    }          
-
+    }
   ]
 })
