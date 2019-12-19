@@ -7,7 +7,7 @@
     <LMap :zoom="zoom" :center="[latPosition,lonPosition]" style="height: 80vh; width: 80vw">
       <LTileLayer :url="url" ></LTileLayer>
       <!-- <LMarker :lat-lng="marker" ></LMarker>  -->
-      <LMarker v-if="visible" v-for="item in wc" :lat-lng="item" >
+      <LMarker v-if="visible" v-for="item in wc" :lat-lng="item" v-bind:key="item.id" >
           <l-icon
           :icon-anchor="staticAnchor"
           class-name="someExtraClass">
@@ -23,13 +23,12 @@
         </l-icon>
       </LMarker>
 
-      <LMarker v-if="visiblePanneau" v-for="item in panneau" :lat-lng="item" >
+      <LMarker v-if="visiblePanneau" v-for="item in panneau" :lat-lng="item" v-bind:key="item.id" >
           <l-icon
           :icon-anchor="staticAnchor"
           class-name="someExtraClass">
           <img src="./panneau.png">
         </l-icon></LMarker>
-
 
     </LMap>
 
