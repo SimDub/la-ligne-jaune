@@ -2,22 +2,33 @@
   <div id="leaflet" >
     <p>{{latPosition}} Merde !!!</p>
     <button v-on:click="visible = !visible">{{visible?'pas toilette':'toilettes'}}</button>
-    <button v-on:click="moiVisible = !moiVisible">{{moiVisible?'pas moi':'moi'}}</button>
-    <button v-on:click="visiblePanneau = !visiblePanneau">{{visiblePanneau?'panneaux':'pas panneau'}}</button>
-    <LMap :zoom="zoom" :center="[latPosition,lonPosition]" style="height: 300px; width: 500px">
+    <button v-on:click="moiVisible = !moiVisible">{{moiVisible?'pas Michel':'Michel'}}</button>
+    <button v-on:click="visiblePanneau = !visiblePanneau">{{visiblePanneau?'pas panneau':'panneaux'}}</button>
+    <LMap :zoom="zoom" :center="[latPosition,lonPosition]" style="height: 80vh; width: 80vw">
       <LTileLayer :url="url" ></LTileLayer>
       <!-- <LMarker :lat-lng="marker" ></LMarker>  -->
-      <LMarker v-if="visible" v-for="item in wc" :lat-lng="item" ></LMarker>
+      <LMarker v-if="visible" v-for="item in wc" :lat-lng="item" >
+          <l-icon
+          :icon-anchor="staticAnchor"
+          class-name="someExtraClass">
+          <img src="./wc.png">
+        </l-icon>
+      </LMarker>
       <LMarker v-if="moiVisible" :lat-lng="[latPosition,lonPosition]" >
-          <LIcon
+          <l-icon
           :icon-anchor="staticAnchor"
           class-name="someExtraClass">
           <div class="headline">{{ customText }}</div>
-          <img src="static/images/layers.png">
-        </LIcon>
+          <img src="./michel.png">
+        </l-icon>
       </LMarker>
 
-      <LMarker v-if="visiblePanneau" v-for="item in panneau" :lat-lng="item" ></LMarker>
+      <LMarker v-if="visiblePanneau" v-for="item in panneau" :lat-lng="item" >
+          <l-icon
+          :icon-anchor="staticAnchor"
+          class-name="someExtraClass">
+          <img src="./panneau.png">
+        </l-icon></LMarker>
 
 
     </LMap>
@@ -50,7 +61,7 @@ Icon.Default.mergeOptions({
 export default{
   data() {
     return {
-      zoom:12,
+      zoom:15,
       center: [1, 1],
       url:'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
       marker: [47.2173, -1.5534],
@@ -63,14 +74,14 @@ export default{
       visible:true,
       visiblePanneau:true,
       moiVisible:true,
-      icon: ({
-        iconUrl: 'static/images/baseball-marker.png',
-        iconSize: [32, 37],
-        iconAnchor: [16, 37]
-      }),
-      staticAnchor: [16, 37],
-      customText: 'Foobar',
-      iconSize: 64
+      // icon: ({
+      //   iconUrl: './arbre.png',
+      //   iconSize: [32, 37],
+      //   iconAnchor: [1, 1]
+      // }),
+      staticAnchor: [1, 1],
+      customText: 'Michel',
+      iconSize: 2
     }
   },
   components: {
@@ -119,8 +130,7 @@ export default{
 <style>
 
 html, body, #leaflet {
-  height: 100px;
-  margin: 0;
+  margin: 0 auto;
 }
 
 </style>
