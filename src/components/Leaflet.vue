@@ -2,13 +2,40 @@
   <div class="container">
     <div id="leaflet">
       <p>{{latPosition}} Merde !!!</p>
-      <button v-on:click="visible = !visible" :class="{green: visible, black: !visible}">{{visible}}</button>
+      <button
+        v-on:click="visible = !visible"
+        :class="{green: visible, black: !visible}"
+      >{{visible?'pas toilette':'toilettes'}}</button>
+      <button v-on:click="moiVisible = !moiVisible">{{moiVisible?'pas Michel':'Michel'}}</button>
+      <button
+        v-on:click="visiblePanneau = !visiblePanneau"
+      >{{visiblePanneau?'pas panneau':'panneaux'}}</button>
       <div class="map-container">
-        <LMap :zoom="zoom" :center="[latPosition,lonPosition]" style="height: 600px; width: 800px">
+        <LMap :zoom="zoom" :center="[latPosition,lonPosition]" style="height: 80vh; width: 80vw">
           <LTileLayer :url="url"></LTileLayer>
           <!-- <LMarker :lat-lng="marker" ></LMarker>  -->
-          <LMarker v-if="visible" v-for="item in wc" :lat-lng="item" v-bind:key="item.id"></LMarker>
-          <LMarker :lat-lng="[latPosition,lonPosition]" id="jaune"></LMarker>
+          <LMarker v-if="visible" v-for="item in wc" :lat-lng="item" v-bind:key="item.id">
+            <l-icon :icon-anchor="staticAnchor" class-name="someExtraClass">
+              <img src="./wc.png" />
+            </l-icon>
+          </LMarker>
+          <LMarker v-if="moiVisible" :lat-lng="[latPosition,lonPosition]">
+            <l-icon :icon-anchor="staticAnchor" class-name="someExtraClass">
+              <div class="headline">{{ customText }}</div>
+              <img src="./michel.png" />
+            </l-icon>
+          </LMarker>
+
+          <LMarker
+            v-if="visiblePanneau"
+            v-for="item in panneau"
+            :lat-lng="item"
+            v-bind:key="item.id"
+          >
+            <l-icon :icon-anchor="staticAnchor" class-name="someExtraClass">
+              <img src="./panneau.png" />
+            </l-icon>
+          </LMarker>
         </LMap>
       </div>
     </div>
@@ -19,11 +46,12 @@
 /* eslint-disable */
 import Vue from "vue";
 import Vue2Leaflet from "vue2-leaflet";
-import { LMap, LTileLayer, LMarker } from "vue2-leaflet";
+import { LMap, LTileLayer, LMarker, LIcon } from "vue2-leaflet";
 import { Icon } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import axios from "axios";
 
+Vue.component("l-icon", LIcon);
 Vue.component("l-map", LMap);
 Vue.component("l-tilelayer", LTileLayer);
 Vue.component("l-marker", LMarker);
@@ -39,7 +67,7 @@ Icon.Default.mergeOptions({
 export default {
   data() {
     return {
-      zoom: 12,
+      zoom: 15,
       center: [1, 1],
       url: "http://{s}.tile.osm.org/{z}/{x}/{y}.png",
       marker: [47.2173, -1.5534],
@@ -47,8 +75,19 @@ export default {
       latPosition: "",
       lonPosition: "",
       wc: "",
+      panneau: "",
       counter: 0,
-      visible: true
+      visible: true,
+      visiblePanneau: true,
+      moiVisible: true,
+      // icon: ({
+      //   iconUrl: './arbre.png',
+      //   iconSize: [32, 37],
+      //   iconAnchor: [1, 1]
+      // }),
+      staticAnchor: [1, 1],
+      customText: "Michel",
+      iconSize: 2
     };
   },
   components: {
@@ -70,12 +109,25 @@ export default {
         console.log(wherePiss);
         this.wc = wherePiss;
       });
-    console.log("fhjdhj");
 
     navigator.geolocation.getCurrentPosition(position => {
       this.latPosition = position.coords.latitude;
       this.lonPosition = position.coords.longitude;
     });
+
+    axios
+      .get(
+        "https://data.nantesmetropole.fr/api/records/1.0/search/?dataset=244400404_panneaux-message-variable-pmv-nantes-metropole&rows=300&facet=sens&facet=indic_temps_parcours"
+      )
+      .then(response => {
+        const panneaux = response.data.records;
+        console.log(panneaux);
+        const wherePisspanneaux = panneaux.map(
+          (panneau, index) => panneau.fields.location
+        );
+        console.log("testpanneau");
+        this.panneau = wherePisspanneaux;
+      });
   }
 };
 </script>
@@ -87,19 +139,19 @@ body,
   height: 100px;
   margin: 0;
 }
-#leaflet button{
+#leaflet button {
   min-width: 80px;
   padding: 10px 15px;
   margin: 10px;
   border-radius: 10px;
-  color:honeydew;
+  color: honeydew;
   font-weight: bold;
   border: solid 2px rgba(192, 186, 209, 0.342);
 }
-.green{
+.green {
   background-color: rgb(35, 165, 79);
 }
-.black{
+.black {
   background-color: rgba(10, 20, 14, 0.959);
 }
 #jaune {
@@ -109,18 +161,18 @@ body,
   width: 75%;
   margin: auto;
 }
-.map-container{
+.map-container {
   display: flex;
   flex-direction: row;
   justify-content: center;
   margin-top: 10%;
   margin-bottom: 10%;
 }
-.leaflet-container{
+.leaflet-container {
   -moz-box-shadow: 1px 1px 20px 5px #ccc;
   -webkit-box-shadow: 1px 1px 20px 5px #ccc;
   -o-box-shadow: 1px 1px 20px 5px #ccc;
   box-shadow: 1px 1px 20px 5px #ccc;
-  filter:progid:DXImageTransform.Microsoft.Shadow(color=#ccc, Direction=134, Strength=20);
+  filter: progid:DXImageTransform.Microsoft.Shadow(color=#ccc, Direction=134, Strength=20);
 }
 </style>
