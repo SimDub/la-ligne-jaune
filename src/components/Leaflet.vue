@@ -2,7 +2,7 @@
   <div class="container">
     <div id="leaflet">
       <button
-        v-on:click="wcProcheVisible = !wcProcheVisible"
+        v-on:click="wcProcheVisible = !wcProcheVisible , visible=false"
       >{{wcProcheVisible?`wc les plus proches ${distWcProche} m... court !! `:'un mega pipi ?'}}</button>
       <button
         v-on:click="visible = !visible"
@@ -22,6 +22,7 @@
           <!-- <LMarker :lat-lng="marker" ></LMarker>  -->
           <LMarker v-if="wcProcheVisible" :lat-lng="wcProche">
             <l-icon :icon-anchor="staticAnchor" class-name="someExtraClass">
+            <div class-name="headline">{{horairesPlusProche}}</div>
               <img src="./wc-or.png" />
             </l-icon>
           </LMarker>
@@ -103,6 +104,8 @@ export default {
       staticAnchor: [1, 1],
       customText: "Michel",
       distWcProche: "",
+      horaires:'',
+      horairesPlusProche:'',
 
       iconSize: 2
     };
@@ -147,6 +150,8 @@ export default {
       this.distWcProche = Math.round(Math.min(...dist1) * 1000);
       console.log(wc[indexProche]);
       this.wcProche = wc[indexProche];
+      console.log(this.horaires)
+      this.horairesPlusProche = this.horaires[indexProche]
     }
   },
   components: {
@@ -169,7 +174,12 @@ export default {
         const wherePiss = toilettes.map(
           (toilette, index) => toilette.fields.location
         );
+        const horaires = toilettes.map(
+          (toilette, index) => toilette.fields.infos_horaires
+        );
+        this.horaires = horaires
         console.log(wherePiss);
+        console.log(horaires)
         this.wc = wherePiss;
       });
 
