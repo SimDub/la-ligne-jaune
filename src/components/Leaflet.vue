@@ -91,9 +91,9 @@ export default {
       wcProche: "",
       panneau: "",
       counter: 0,
-      visible: true,
+      visible: false,
       wcProcheVisible: false,
-      visiblePanneau: true,
+      visiblePanneau: false,
       moiVisible: true,
 
       // icon: ({

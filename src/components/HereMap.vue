@@ -1,7 +1,11 @@
 <template>
-    <div class="here-map">
-        <div ref="map" style="width: 75%; height: 600px"></div>
+  <div class="container">
+    <div id="hereMap">
+      <div class="here-map">
+          <div ref="map" style="height: 80vh; width: 80vw"></div>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
@@ -90,4 +94,29 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+html,
+body,
+#HereMap {
+  height: 100px;
+  margin: 0; 
+}
+.container {
+  width: 75%;
+  margin: auto;
+}
+.here-map {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 10%;
+  margin-bottom: 10%;
+}
+.hereMap-container {
+  -moz-box-shadow: 1px 1px 20px 5px #ccc;
+  -webkit-box-shadow: 1px 1px 20px 5px #ccc;
+  -o-box-shadow: 1px 1px 20px 5px #ccc;
+  box-shadow: 1px 1px 20px 5px #ccc;
+  filter: progid:DXImageTransform.Microsoft.Shadow(color=#ccc, Direction=134, Strength=20);
+  border-radius: 10px;
+}</style>
