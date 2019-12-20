@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1> Hello {{ person.name }} de {{ from }} </h1>
+    <img src="./logo.png">
   </div>
 </template>
 
@@ -14,7 +15,7 @@ export default {
         firstname: 'Le Jaune',
         name: 'Michel'
       },
-      from: 'Nantes'
+      from: 'Nantes',
     }
   }
 }

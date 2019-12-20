@@ -2,7 +2,9 @@
   <div class="container">
     <div id="leaflet">
       <button
+
         v-on:click="wcProcheVisible = !wcProcheVisible , visible=false"
+        :class="{red: wcProcheVisible, yellow: !wcProcheVisible}"
       >{{wcProcheVisible?`wc les plus proches ${distWcProche} m... court !! `:'un mega pipi ?'}}</button>
       <button
         v-on:click="visible = !visible"
@@ -17,7 +19,7 @@
         :class="{green: visiblePanneau, black: !visiblePanneau}"
       >{{visiblePanneau?'pas panneau':'panneaux'}}</button>
       <div class="map-container">
-        <LMap :zoom="zoom" :center="[latPosition,lonPosition]" style="height: 80vh; width: 80vw">
+        <LMap :zoom="zoom" :center="[latPosition,lonPosition]" style="height: 80vh; width: 100vw">
           <LTileLayer :url="url"></LTileLayer>
           <!-- <LMarker :lat-lng="marker" ></LMarker>  -->
           <LMarker v-if="wcProcheVisible" :lat-lng="wcProche">
@@ -91,9 +93,9 @@ export default {
       wcProche: "",
       panneau: "",
       counter: 0,
-      visible: true,
+      visible: false,
       wcProcheVisible: false,
-      visiblePanneau: true,
+      visiblePanneau: false,
       moiVisible: true,
 
       // icon: ({
@@ -223,12 +225,36 @@ body,
 .black {
   background-color: rgba(10, 20, 14, 0.959);
 }
+.yellow {
+  background-color: burlywood;
+}
+.red {
+  background-color: rgb(204, 63, 63);
+}
 #jaune {
   background-color: red;
 }
 .container {
-  width: 75%;
+  width: 100%;
   margin: auto;
+}
+@media (min-width: 768px) {
+  .container {
+    width: 90%;
+    margin: auto;
+  }
+  .leaflet-container {
+    width: 90vh;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    width: 75%;
+    margin: auto;
+  }
+  .leaflet-container {
+    width: 80vh;
+  }
 }
 .map-container {
   display: flex;
@@ -236,6 +262,7 @@ body,
   justify-content: center;
   margin-top: 10%;
   margin-bottom: 10%;
+  width: 100%;
 }
 .leaflet-container {
   -moz-box-shadow: 1px 1px 20px 5px #ccc;
@@ -244,5 +271,7 @@ body,
   box-shadow: 1px 1px 20px 5px #ccc;
   filter: progid:DXImageTransform.Microsoft.Shadow(color=#ccc, Direction=134, Strength=20);
   border-radius: 10px;
+  width: 50vh;
+  height: 100vh;
 }
 </style>

@@ -61,4 +61,5 @@ export default {
 #app .link-navbar:hover{
   text-decoration: underline;
 }
+
 </style>
