@@ -18,7 +18,7 @@
         :class="{green: visiblePanneau, black: !visiblePanneau}"
       >{{visiblePanneau?'pas panneau':'panneaux'}}</button>
       <div class="map-container">
-        <LMap :zoom="zoom" :center="[latPosition,lonPosition]" style="height: 80vh; width: 80vw">
+        <LMap :zoom="zoom" :center="[latPosition,lonPosition]" style="height: 80vh; width: 100vw">
           <LTileLayer :url="url"></LTileLayer>
           <!-- <LMarker :lat-lng="marker" ></LMarker>  -->
           <LMarker v-if="wcProcheVisible" :lat-lng="wcProche">
@@ -224,8 +224,26 @@ body,
   background-color: red;
 }
 .container {
-  width: 75%;
+  width: 100%;
   margin: auto;
+}
+@media (min-width: 768px) {
+  .container {
+    width: 90%;
+    margin: auto;
+  }
+  .leaflet-container {
+    width: 90vh;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    width: 75%;
+    margin: auto;
+  }
+  .leaflet-container {
+    width: 80vh;
+  }
 }
 .map-container {
   display: flex;
@@ -233,6 +251,7 @@ body,
   justify-content: center;
   margin-top: 10%;
   margin-bottom: 10%;
+  width: 100%;
 }
 .leaflet-container {
   -moz-box-shadow: 1px 1px 20px 5px #ccc;
@@ -241,5 +260,7 @@ body,
   box-shadow: 1px 1px 20px 5px #ccc;
   filter: progid:DXImageTransform.Microsoft.Shadow(color=#ccc, Direction=134, Strength=20);
   border-radius: 10px;
+  width: 50vh;
+  height: 100vh;
 }
 </style>
