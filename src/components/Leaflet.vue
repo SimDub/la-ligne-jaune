@@ -2,7 +2,7 @@
   <div class="container">
     <div id="leaflet">
       <p>{{latPosition}} Merde !!!</p>
-      <button v-on:click="visible = !visible">{{visible}}</button>
+      <button v-on:click="visible = !visible" :class="{green: visible, black: !visible}">{{visible}}</button>
       <div class="map-container">
         <LMap :zoom="zoom" :center="[latPosition,lonPosition]" style="height: 600px; width: 800px">
           <LTileLayer :url="url"></LTileLayer>
@@ -92,10 +92,15 @@ body,
   padding: 10px 15px;
   margin: 10px;
   border-radius: 10px;
-  background-color: rgb(45, 207, 99);
   color:honeydew;
   font-weight: bold;
   border: solid 2px rgba(192, 186, 209, 0.342);
+}
+.green{
+  background-color: rgb(35, 165, 79);
+}
+.black{
+  background-color: rgba(10, 20, 14, 0.959);
 }
 #jaune {
   background-color: red;
