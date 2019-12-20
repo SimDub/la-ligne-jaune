@@ -1,9 +1,9 @@
 <template>
   <div id="leaflet" >
     <button v-on:click="wcProcheVisible = !wcProcheVisible">{{wcProcheVisible?`wc les plus proches ${distWcProche} m... court !! `:'un mega pipi ?'}}</button>
-    <button v-on:click="visible = !visible">{{visible?'pas toilette':'toilettes'}}</button>
-    <button v-on:click="moiVisible = !moiVisible">{{moiVisible?'pas Michel':'Michel'}}</button>
-    <button v-on:click="visiblePanneau = !visiblePanneau">{{visiblePanneau?'pas panneau':'panneaux'}}</button>
+    <button v-on:click="visible = !visible" :class="{green: visible, black: !visible}">{{visible?'pas toilette':'toilettes'}}</button>
+    <button v-on:click="moiVisible = !moiVisible" :class="{green: moiVisible, black: !moiVisible}">{{moiVisible?'pas Michel':'Michel'}}</button>
+    <button v-on:click="visiblePanneau = !visiblePanneau" :class="{green: visiblePanneau, black: !visiblePanneau}">{{visiblePanneau?'pas panneau':'panneaux'}}</button>
     <LMap :zoom="zoom" :center="[latPosition,lonPosition]" style="height: 80vh; width: 80vw">
       <LTileLayer :url="url" ></LTileLayer>
       <!-- <LMarker :lat-lng="marker" ></LMarker>  -->
@@ -38,8 +38,6 @@
         </l-icon></LMarker>
 
     </LMap>
-
-
           <LMarker
             v-if="visiblePanneau"
             v-for="item in panneau"
@@ -203,7 +201,7 @@ body,
   margin: 0;
 }
 #leaflet button {
-  min-width: 80px;
+  min-width: 125px;
   padding: 10px 15px;
   margin: 10px;
   border-radius: 10px;
@@ -237,5 +235,6 @@ body,
   -o-box-shadow: 1px 1px 20px 5px #ccc;
   box-shadow: 1px 1px 20px 5px #ccc;
   filter: progid:DXImageTransform.Microsoft.Shadow(color=#ccc, Direction=134, Strength=20);
+  border-radius: 10px;
 }
 </style>
