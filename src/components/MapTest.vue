@@ -1,9 +1,7 @@
 <template>
   <div>
-      <a href='/'>accueil</a>
-
   <p>My position latitude {{latPosition}} longitude {{lonPosition}}<p/>
-
+  {{wcPosition}}
   <ul>
     <li v-for="item in info" v-bind:key="item.index">
      toilette : Latitude {{ item[0] }} longitude {{ item[1] }}
@@ -20,7 +18,7 @@ export default {
 
   data () {
     return {
-      info: null,
+      wcPosition: null,
       latPosition: 'future latitude',
       lonPosition: 'future longitude',
       items: [
@@ -37,7 +35,7 @@ export default {
         const wherePiss = toilettes.map((toilette, index) =>
           toilette.fields.location)
         console.log(wherePiss)
-        this.info = wherePiss
+        this.wcPosition = wherePiss
       })
     console.log('fhjdhj')
 

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1> Hello test {{ person.name }} de {{ from }} </h1>
+    <h1> Hello {{ person.name }} de {{ from }} </h1>
   </div>
 </template>
 
@@ -11,10 +11,10 @@ export default {
   data () {
     return {
       person: {
-        firstname: 'robert',
-        name: 'albert'
+        firstname: 'Le Jaune',
+        name: 'Michel'
       },
-      from: 'nantes'
+      from: 'Nantes'
     }
   }
 }

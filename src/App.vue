@@ -1,27 +1,20 @@
 <template>
   <div>
     <div id="app">
-      <a href="/#/">accueil</a>
-      <a href="/#/toilettes">Toilettes</a>
-      <a href="/#/heremap">Here Map</a>
+      <a href="/#/" class="link-navbar">accueil</a>
+      <a href="/#/toilettes" class="link-navbar">Toilettes</a>
+      <a href="/#/heremap" class="link-navbar">Here Map</a>
+      <a href="/#/leaflet" class="link-navbar">Leaflet</a>
       <div id="app"></div>
       <router-view />
     </div>
-      <HereMap v-bind:theme=theme appId="T0ZRvqFl3EPBagnQo8t9" appCode="oCnrou0zSa-FFEiqcRA7lnWjc-MlLwWJDAh747oAemk" />
-      <br />
-      <button v-on:click="switchTheme('normal.day')">Normal - Day</button>
-      <button v-on:click="switchTheme('normal.day.grey')">Normal - Day (Grey)</button>
-      <button v-on:click="switchTheme('normal.day.transit')">Normal - Day (Transit)</button>
-      <button v-on:click="switchTheme('normal.night')">Normal - Night</button>
-      <button v-on:click="switchTheme('normal.night.grey')">Normal - Night (Grey)</button>
-      <button v-on:click="switchTheme('reduced.night')">Reduced - Night</button>
-      <button v-on:click="switchTheme('reduced.day')">Reduced - Day</button>
   </div>
 </template>
 
 <script>
-import Test from './components/Test'
-import HereMap from './components/HereMap.vue'
+// import Test from './components/Test'
+// import HereMap from './components/HereMap.vue'
+
 /* eslint-disable */
 export default {
   name: "app",
@@ -31,19 +24,37 @@ export default {
     };
   },
   components: {
-    HereMap,
-    Test
-  },
-  methods: {
-    switchTheme(theme) {
-      this.theme = theme;
-    }
-  },
+    // HereMap,
+    // Test,
+  }
 };
 </script>
 
 <style>
-    body {
-        background-color: #F0F0F0;
-    }
+
+#app {
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+
+#app .link-navbar{
+  min-width: 80px;
+  text-decoration: none;
+  display: inline-block;
+  padding: 10px 15px;
+  margin: 10px;
+  border-radius: 10px;
+  background-color: rgb(30, 71, 255);
+  color:honeydew;
+  font-weight: bold;
+  border: solid 2px rgba(192, 186, 209, 0.342);
+}
+
+#app .link-navbar:hover{
+  text-decoration: underline;
+}
 </style>

@@ -2,7 +2,6 @@
   <div>
     <p>My position latitude {{latPosition}} longitude {{lonPosition}}</p>
     <p />
-
     <ul>
       <li v-for="item in info" v-bind:key="item.id">toilette : Latitude {{ item[0] }} longitude {{ item[1] }}</li>
     </ul>
@@ -12,6 +11,8 @@
 </template>
 
 <script>
+// import Vue from 'vue'
+import Leaflet from './Leaflet'
 const axios = require('axios')
 /* eslint-disable */
 
@@ -23,6 +24,8 @@ export default {
       lonPosition: "future longitude"
     };
   },
+  props: {
+    },
   mounted() {
     axios
       .get(
@@ -43,6 +46,9 @@ export default {
       this.latPosition = position.coords.latitude;
       this.lonPosition = position.coords.longitude;
     });
+  },
+    components: {
+    Leaflet
   }
 };
 </script>
