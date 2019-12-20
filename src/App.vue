@@ -1,8 +1,8 @@
 <template>
   <div>
     <div id="app">
-      <img src="./components/logo.png" class="logo">
-      <a href="/#/" class="link-navbar">accueil</a>
+      <img src="./components/logo.png" class="logo" />
+      <a href="/#/" class="link-navbar">Accueil</a>
       <a href="/#/heremap" class="link-navbar">Here Map</a>
       <a href="/#/leaflet" class="link-navbar">Plan de survie</a>
       <div id="app"></div>
@@ -12,14 +12,14 @@
 </template>
 
 <script>
-import Test from './components/Test'
-import HereMap from './components/HereMap.vue'
+import Test from "./components/Test";
+import HereMap from "./components/HereMap.vue";
 /* eslint-disable */
 export default {
   name: "app",
   data() {
     return {
-      theme: 'normal.day'
+      theme: "normal.day"
     };
   },
   components: {
@@ -30,11 +30,12 @@ export default {
     switchTheme(theme) {
       this.theme = theme;
     }
-  },
+  }
 };
 </script>
 
 <style>
+
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -43,7 +44,7 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
-#app .link-navbar{
+#app .link-navbar {
   min-width: 80px;
   text-decoration: none;
   display: inline-block;
@@ -51,19 +52,28 @@ export default {
   margin: 10px;
   border-radius: 10px;
   background-color: rgb(30, 71, 255);
-  color:honeydew;
+  color: honeydew;
   font-weight: bold;
   border: solid 2px rgba(192, 186, 209, 0.342);
 }
-#app .link-navbar:hover{
+#app .link-navbar:hover {
   text-decoration: underline;
 }
-#app .logo{
-  width:200px;
-  height:200px;
+#app .logo {
+  width: 200px;
+  height: 200px;
 }
-#app a{
-  position:relative;
-  top:-100px;
+#app a {
+  position: relative;
+  top: -100px;
 }
+@media (max-width: 576px) {
+  #app a {
+    top: 0px;
+  }
+  #app .logo{
+    display: none;
+  }
+}
+
 </style>
