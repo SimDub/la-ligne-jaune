@@ -1,5 +1,6 @@
 <template>
   <div>
+     <img class="logo" src="./components/logo.png">
     <div id="app">
       <a href="/#/" class="link-navbar">accueil</a>
       <a href="/#/toilettes" class="link-navbar">Toilettes</a>
