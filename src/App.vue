@@ -12,9 +12,8 @@
 </template>
 
 <script>
-// import Test from './components/Test'
-// import HereMap from './components/HereMap.vue'
-
+import Test from './components/Test'
+import HereMap from './components/HereMap.vue'
 /* eslint-disable */
 export default {
   name: "app",
@@ -24,9 +23,14 @@ export default {
     };
   },
   components: {
-    // HereMap,
-    // Test,
-  }
+    HereMap,
+    Test
+  },
+  methods: {
+    switchTheme(theme) {
+      this.theme = theme;
+    }
+  },
 };
 </script>
 
