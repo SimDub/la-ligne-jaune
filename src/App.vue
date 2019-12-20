@@ -1,10 +1,10 @@
 <template>
   <div>
     <div id="app">
+      <img src="./components/logo.png" class="logo">
       <a href="/#/" class="link-navbar">accueil</a>
-      <a href="/#/toilettes" class="link-navbar">Toilettes</a>
       <a href="/#/heremap" class="link-navbar">Here Map</a>
-      <a href="/#/leaflet" class="link-navbar">Leaflet</a>
+      <a href="/#/leaflet" class="link-navbar">Plan de survie</a>
       <div id="app"></div>
       <router-view />
     </div>
@@ -35,7 +35,6 @@ export default {
 </script>
 
 <style>
-
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -44,7 +43,6 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
-
 #app .link-navbar{
   min-width: 80px;
   text-decoration: none;
@@ -57,9 +55,15 @@ export default {
   font-weight: bold;
   border: solid 2px rgba(192, 186, 209, 0.342);
 }
-
 #app .link-navbar:hover{
   text-decoration: underline;
 }
-
+#app .logo{
+  width:200px;
+  height:200px;
+}
+#app a{
+  position:relative;
+  top:-100px;
+}
 </style>
