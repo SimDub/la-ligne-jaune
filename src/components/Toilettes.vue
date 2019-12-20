@@ -15,7 +15,7 @@
 <script>
 // import Vue from 'vue'
 import Leaflet from './Leaflet'
-import vue from 'vue'
+// import vue from 'vue'
 const axios = require('axios')
 /* eslint-disable */
 

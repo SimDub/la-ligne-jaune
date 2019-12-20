@@ -3,6 +3,7 @@
     <div id="leaflet">
       <button
         v-on:click="wcProcheVisible = !wcProcheVisible"
+        :class="{red: wcProcheVisible, yellow: !wcProcheVisible}"
       >{{wcProcheVisible?`wc les plus proches ${distWcProche} m... court !! `:'un mega pipi ?'}}</button>
       <button
         v-on:click="visible = !visible"
@@ -212,6 +213,12 @@ body,
 }
 .black {
   background-color: rgba(10, 20, 14, 0.959);
+}
+.yellow {
+  background-color: burlywood;
+}
+.red {
+  background-color: rgb(204, 63, 63);
 }
 #jaune {
   background-color: red;
