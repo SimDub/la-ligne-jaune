@@ -9,10 +9,22 @@
 
 <script>
 /* eslint-disable */
+
 import axios from 'axios'
 
 export default {
   name: "HereMap",
+    props: {
+      appId: String,
+      appCode: String,
+      theme: String,
+      lat: String,
+      lng: String,
+      width: String,
+      height: String,
+      toilettelat: String,
+      toilettelon: String
+    },
   data() {
     return {
       map: {},
@@ -40,6 +52,11 @@ export default {
   },
   mounted() {
     
+    this.platform = new H.service.Platform({
+      app_id: this.appId,
+        app_code: this.appCode,
+    });
+    var layers = this.platform.createDefaultLayers();
     this.map = new H.Map(
     this.$refs.map,
     this.platform.createDefaultLayers().normal.map,
@@ -87,10 +104,7 @@ export default {
   lng:-1.50
   });
   this.map.addObject(wcMarkerTest2)
-  } 
-
-
-  
+  }   
 }
 </script>
 
